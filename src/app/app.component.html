@@ -1,0 +1,9 @@
+<base href="/">
+<h1 id="pageWrapper" (window:resize)="onResize($event)">
+<nav>
+  <a routerLink="/brackets" routerLinkActive="active">Brackets</a>
+  <a routerLink="/meme" routerLinkActive="active">Memes</a>
+</nav>
+<router-outlet (window:resize)="onResize($event)"></router-outlet>
+</h1>
+<div class="footer">MattWolfson.com &bull; <a href="https://www.linkedin.com/in/wolfsonmatt" target="_blank">LinkedIn</a> &bull; mcw88@cornell.edu &bull; 2014 - 2017 </div>	
