@@ -10,6 +10,7 @@ export class BracketComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+  
   }
 
 }
