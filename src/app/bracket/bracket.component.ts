@@ -95,15 +95,38 @@ export class BracketComponent implements OnInit {
   public submitBracket(event) {
   	var images = document.getElementsByTagName('img');
   	var allTeamsPicked = true;
-  	var yourTeams = [];
+  	var playoffTeams = [];
+  	var yourFirstRoundPicks = [];
+  	var yourConferenceFinalPicks = [];
+  	var yourConferenceChampPicks = [];
+  	var yourFinalsChampPick;
+  	var currentTeamImg;
+  	var currentTeam;
   	for(var i = 0; i < images.length; i++) {
-  		if(images[i].src.indexOf("src/img/bracket/nba/Solid_white.svg")>=0) {
+  		currentTeamImg = images[i].src
+  		if(currentTeamImg.indexOf("src/img/bracket/nba/Solid_white.svg")>=0) {
   			alert("SORREY!!!!\nYou can only submit a bracket once a team is picked for every matchup.\nPlease make a choice between the remaining matchups");
   			allTeamsPicked = false;
   			break;
   		}
+  		else if(currentTeamImg.indexOf("/nba/")>=0) {
+  			currentTeam = currentTeamImg.substring(currentTeamImg.indexOf("nba")+4,currentTeamImg.indexOf("."));
+			if(!playoffTeams.includes(currentTeam)){
+  				playoffTeams.push(currentTeam);
+  			} else if(!yourFirstRoundPicks.includes(currentTeam)){
+  				yourFirstRoundPicks.push(currentTeam);
+  			} else if(!yourConferenceFinalPicks.includes(currentTeam)){
+  				yourConferenceFinalPicks.push(currentTeam);
+  			} else if(!yourConferenceChampPicks.includes(currentTeam)){
+  				yourConferenceChampPicks.push(currentTeam);
+  			} else {
+  				yourFinalsChampPick = currentTeam;
+  			}
+  		}
   	}
-  	if (allTeamsPicked) {alert("SORREY!!!!\nThis site is not able to save your brackets yet..\nBut it's next on my To Do list!!")};
+  	if (allTeamsPicked) {
+  		alert("SORREY!!!!\nThis site is not able to save your brackets yet..\nBut it's next on my To Do list!!");
+  	}
   }
 
 }

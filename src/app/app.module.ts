@@ -7,12 +7,14 @@ import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
 import { BracketComponent } from './bracket/bracket.component';
 import { MemeComponent } from './meme/meme.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 const appRoutes: Routes = [
   { path: 'brackets', component: BracketComponent },
   { path: 'meme', component: MemeComponent },
   { path: 'main', component: AppComponent },
   { path: '',   redirectTo: '/brackets', pathMatch: 'full' },
+  { path: '**', component: PageNotFoundComponent }
 ];
 
 @NgModule({
@@ -25,7 +27,8 @@ const appRoutes: Routes = [
   declarations: [
     AppComponent,
     BracketComponent,
-    MemeComponent
+    MemeComponent,
+    PageNotFoundComponent
   ],
   providers: [],
   bootstrap: [AppComponent]
