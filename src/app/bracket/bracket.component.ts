@@ -52,6 +52,7 @@ export class BracketComponent implements OnInit {
 
 	  	//Check if the competing team is in any future rounds
 	  	var newRoundClasses;
+	  	var newRoundElement;
 	  	var roundIndex;
 	  	var roundClassIndex;
 	  	var newGameNumber;
@@ -88,7 +89,7 @@ export class BracketComponent implements OnInit {
 		  		newClass = "champion";
 		  	}
 
-	  		var newRoundElement = document.getElementsByClassName(newRoundClasses)[0];
+	  		newRoundElement = document.getElementsByClassName(newRoundClasses)[0];
 	  		futureTeam = null;
 	  		for (var i = 0; i < newRoundElement.childNodes.length; i++) {
 		  		if (newRoundElement.childNodes[i]['className'] &&
@@ -118,6 +119,11 @@ export class BracketComponent implements OnInit {
 		  	}
 		  }
 		}
+		this.checkToUpdateSubmitButon();
+  };
+
+  private removeLosingTeamFromFutureRounds = function() {
+  	console.log('hi');
   };
 
 
@@ -203,7 +209,7 @@ export class BracketComponent implements OnInit {
 
   }
 
-  public submitBracket(event) {
+  public checkForUnpickedTeams(enableAlerts) {
   	var images = document.getElementsByTagName('img');
   	var allTeamsPicked = true;
   	var playoffTeams = [];
@@ -216,7 +222,7 @@ export class BracketComponent implements OnInit {
   	for(var i = 0; i < images.length; i++) {
   		currentTeamImg = images[i].src
   		if(currentTeamImg.indexOf("src/img/bracket/nba/Solid_white.svg")>=0) {
-  			alert("SORREY!!!!\nYou can only submit a bracket once a team is picked for every matchup.\nPlease make a choice between the remaining matchups");
+			if(enableAlerts) {alert("SORREY!!!!\nYou can only submit a bracket once a team is picked for every matchup.\nPlease make a choice between the remaining matchups"); }
   			allTeamsPicked = false;
   			break;
   		}
@@ -235,6 +241,23 @@ export class BracketComponent implements OnInit {
   			}
   		}
   	}
+
+  	return allTeamsPicked;
+  }
+
+  public checkToUpdateSubmitButon() {
+  	var allTeamsPicked = this.checkForUnpickedTeams(false);
+  	if(allTeamsPicked) {
+  		document.getElementById("submitBracket").className="usable";
+  		document.getElementById("submitBracket").innerHTML = "Submit Bracket";
+  	} else {
+  		document.getElementById("submitBracket").className="notUsable";
+  		document.getElementById("submitBracket").innerHTML = "Please Pick All Teams Before Submitting";
+  	}
+
+  }
+  public submitBracket(event) {
+  	var allTeamsPicked = this.checkForUnpickedTeams(true);
   	if (allTeamsPicked) {
   		alert("SORREY!!!!\nThis site is not able to save your brackets yet..\nBut it's next on my To Do list!!");
   	}

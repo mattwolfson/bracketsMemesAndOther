@@ -196,9 +196,18 @@ input.right {
 }
 
 #submitBracket {
-    background: #7cee4c;
     font-size: 40px;
     font-weight: bold;
     padding: 5px;
     border-radius: 5px;
+}
+
+#submitBracket.notUsable {
+    opacity: .5;
+    background: #ffff00;
+}
+
+#submitBracket.usable {
+    opacity: 1;
+    background: #7cee4c;
 }
