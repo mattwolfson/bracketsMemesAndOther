@@ -248,11 +248,11 @@ export class BracketComponent implements OnInit {
   public checkToUpdateSubmitButon() {
   	var allTeamsPicked = this.checkForUnpickedTeams(false);
   	if(allTeamsPicked) {
-  		document.getElementById("submitBracket").className="usable";
-  		document.getElementById("submitBracket").innerHTML = "Submit Bracket";
+  		document.getElementById("submitBracket").className="";
+  		document.getElementById("bracketNotFullAlert").className="hide";
   	} else {
-  		document.getElementById("submitBracket").className="notUsable";
-  		document.getElementById("submitBracket").innerHTML = "Please Pick All Teams Before Submitting";
+  		document.getElementById("submitBracket").className="hide";
+  		document.getElementById("bracketNotFullAlert").className="";
   	}
 
   }

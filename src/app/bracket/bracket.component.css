@@ -200,14 +200,15 @@ input.right {
     font-weight: bold;
     padding: 5px;
     border-radius: 5px;
-}
-
-#submitBracket.notUsable {
-    opacity: .5;
-    background: #ffff00;
-}
-
-#submitBracket.usable {
     opacity: 1;
     background: #7cee4c;
+}
+
+.hide {
+    display: none;
+}
+
+#bracketNotFullAlert {
+    background-color: #ff5555;
+    font-size: 16px;
 }
