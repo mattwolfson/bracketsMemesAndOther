@@ -13,3 +13,17 @@ body {
 img[alt="www.000webhost.com"]{
 	display: none; /*Needed to hide the 000webhost ad*/
 }
+.spinnerContainer {
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    top:0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+#pageLoadingIcon {
+	font-size: 72px;
+	color: #30a7f7;
+}
