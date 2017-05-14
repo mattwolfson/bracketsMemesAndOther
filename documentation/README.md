@@ -6,7 +6,8 @@ Run `ng serve` or `npm start` for a dev server. Navigate to `http://localhost:42
 
 ## Production Release
 
-- Navigate to webhosting file manager: `https://www.000webhost.com/members/website/majuscular-fashion/files`.
+- Navigate to webhosting file manager: `https://www.000webhost.com/members/website`.
+- Sign in and click the tab that says `File Manager`
 - Click `Upload Files Now`
 - Click Cloud with arrow image to upload files
 - Navigate to dist folder in local repository

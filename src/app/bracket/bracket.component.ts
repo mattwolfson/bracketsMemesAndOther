@@ -147,7 +147,7 @@ export class BracketComponent implements OnInit {
     setTeamOnClick = function (curSlot, nextSlot) {
         var img = curSlot.getElementsByTagName("img")[0],
             nextImg = nextSlot.getElementsByTagName("img")[0];
-        
+        console.log(nextImg);
         img.onclick = function (event) {
             nextImg.src = img.src;
         };
@@ -171,7 +171,7 @@ export class BracketComponent implements OnInit {
         // Go through east and west
         for (i = 0; i < sides.length; i += 1) {
             roundX = document.getElementsByClassName(sides[i] + " round" + curRound)[0];
-            
+            console.log(roundX);
             // Go through each matchup
             for (j = 0; j < matchups.length / 2; j += 1) {
                 team1 = roundX.getElementsByClassName("seed" + matchups[j][0])[0];
