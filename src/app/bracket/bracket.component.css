@@ -11,32 +11,46 @@ h1 {
     display: flex;
     flex-wrap: wrap;
     height: 600px;
-    width: 800px;
-    border-style: solid;
-    border-color: blue;
-    margin: 0 auto;
+    width: 1060px;
+    border: black double;
+    margin: 0 auto 10px;
+    padding: 10px;
 }
 
 .conference {
-    width: 50%;
+    width: 40%;
     height: 100%;
     display: flex;
 }
 
-.westGroup {
-    background-color: green;
-}
-
 .eastGroup {
-    background-color: blue;
+    justify-content: flex-end;
 }
 
 .round1, .round2, .round3, .round4 {
     display: flex;
     flex-direction: column;
     width: 25%;
-    background-color: orange;
+}
+
+.west, .east {
     margin-right: 3px;
+}
+
+.east.round1 {
+    order: 4;
+}
+
+.east.round2 {
+    order: 3;
+}
+
+.east.round3 {
+    order: 2;
+}
+
+.east.round4 {
+    order: 1;
 }
 
 .round1 {
@@ -72,17 +86,26 @@ h1 {
     border-color: black;
     width: 100%;
     height: 10%;
-    border-bottom-style: solid;
+    border-bottom: solid orange;
     border-width: 3px;
 }
 
 .team1 {
-    padding-right: 2px;
+    padding-right: 3px;
 }
 
-.team2 {
-    border-right-style: solid;
+.west .team2 {
+    border-right: solid orange;
     margin-bottom: 30px;
+}
+
+.east .team2 {
+    border-left: solid orange;
+    margin-bottom: 30px;
+}
+
+.round4 .team2 {
+    border-left-style: none;
 }
 
 .teamContent {
@@ -92,6 +115,20 @@ h1 {
 }
 .round1 {
     height: 100%;
+}
+
+.champion {
+    width: 20%;
+    display: flex;
+    flex-direction: column;
+    text-decoration: underline;
+    color: orange;
+}
+
+.champion img {
+    width: 212px;
+    height: 212px;
+    border-bottom: solid;
 }
 
 img {
@@ -106,123 +143,13 @@ img:hover {
     border: 1px solid dodgerblue;
 }
 
-/*ol {
-}
-
-ol, li {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-}
-
-article {
-    height: 600px;
-    width: 1000px;
-    margin: 0 auto;
-    padding: 0;
-}
-
-.champion {
-    position: absolute;
-    left:50%;
-    margin-left:-106px;
-}
-
-.champion img {
-    width: 212px;
-    height: 212px;
-}
-
-.west {
-    float: left;
-    margin-right: 60px;
-}
-
-.east {
-    float: right;
-    margin-left: 60px;
-}
-
-.west div, .east div {
-    display: table-cell;
-    vertical-align: middle;
-    positon: absolute;
-}
-
-.west div:after, .east div:after {
-    opacity: 0.9;
-    content: "";
-    width: 115px;
-    height: 4px;
-    background-color: orange;
-    position: absolute;
-    z-index: -1;
-}
-
-.west div:before, .east div:before {
-    opacity: 0.9;
-    content: "";
-    width: 4px;
-    background-color: orange;
-    position: absolute;
-    z-index: -1;
-}
-
-.west div:after {
-    transform: translate(25px, -35px);
-}
-
-.east div:after {
-    width: 115px;
-    transform: translate(-90px, -35px);
-}
-
-.round1 div {
-    height: 75px;
-}
-
-.round1 div:before {
-    display: none;
-}
-
-.round2 div {
-    height: 150px;
-}
-
-.round2 div:before {
-    height: 79px;
-    transform: translate(23px, -13px);
-}
-
- Round 3 
-.round3 div {
-    height: 300px;
-}
-
-.round3 div:before {
-    height: 154px;
-    transform: translate(23px, -51px);
-}
-
-.round4 div {
-    height: 600px;
-}
-
-.round4 div:before {
-    height: 304px;
-    transform: translate(23px, -126px);
-}
-
-.west.round4 div:after {
-    width: 150px;
-}
-*/
 form {
-    transform: translate(2px, 0px);
+    transform: translate(24px, 3px);
     position: absolute;
     width: 45px;
     height: 40px;
     z-index: 5;
+    color: orange;
 }
 
 input {
