@@ -1,3 +1,287 @@
-<p>
-  brackets works!
-</p>
+<header>
+    <h1>NBA 2017 Post Season Bracket</h1>
+</header>
+
+<div class="round-1">
+    <div class="teamContent {{team.className}} {{i%2 == 0 ? 'top' : 'bottom'}}"
+         *ngFor="let team of teams; let i = index">
+        <span class="rank">{{ team.rank }}</span>
+        <img src="{{ team.logo }}">
+    </div>
+</div>
+<div class="bracket">
+    <div class="westGroup conference">
+        <div class="west round1 4toGo">
+            <div class='seed1 game1 team1'>
+                <div class="teamContent" #elem (click)="advance(elem)">
+                    <span class="rank">1</span>
+                    <img src='src/img/bracket/nba/Golden_State_Warriors.svg'>
+                </div>
+            </div>
+             <div class="seed8 game1 team2">
+                <div class="teamContent" #elem2 (click)="advance(elem2)">
+                    <span class="rank">8</span>
+                    <img src="src/img/bracket/nba/Portland_Trail_Blazers.svg">
+                </div>
+            </div>
+            <div class="seed4 game2 team1">
+                <div  class="teamContent" #elem3 (click)="advance(elem3)">
+                    <span class="rank">4</span>
+                    <img src="src/img/bracket/nba/Clippers.svg">
+                </div>
+            </div>
+            <div class="seed5 game2 team2">
+                <div  class="teamContent" #elem4 (click)="advance(elem4)">
+                    <span class="rank">5</span>
+                    <img src="src/img/bracket/nba/Utah_Jazz.svg">
+                </div>
+            </div>
+            <div class="seed2 game3 team1">
+                <div  class="teamContent" #elem5 (click)="advance(elem5)">
+                    <span class="rank">2</span>
+                    <img src="src/img/bracket/nba/San_Antonio_Spurs.svg">
+                </div>
+            </div>
+            <div class="seed7 game3 team2">
+                <div  class="teamContent" #elem6 (click)="advance(elem6)">
+                    <span class="rank">7</span>
+                    <img src="src/img/bracket/nba/Memphis_Grizzlies.svg">
+                </div>
+            </div>
+            <div class="seed3 game4 team1">
+                <div class="teamContent" #elem7 (click)="advance(elem7)">
+                    <span class="rank">3</span>
+                    <img src="src/img/bracket/nba/Houston_Rockets.svg">
+                </div>
+            </div>
+            <div class="seed6 game4 team2">
+                <div  class="teamContent" #elem8 (click)="advance(elem8)">
+                    <span class="rank">6</span>
+                    <img src="src/img/bracket/nba/Oklahoma_City_Thunder.gif">
+                </div>
+            </div>
+        </div>
+
+        <div class="west round2 3toGo">
+            <li class="seed1-8 game1 team1">
+                <div class="teamContent" #elem9 (click)="advance(elem9)">
+                    <img src="src/img/bracket/nba/Golden_State_Warriors.svg">
+                    <form>
+                        <input type="text" class="left">
+                        <span>-</span>
+                        <input class="right">
+                    </form>
+                </div>
+            </li>
+            <li class="seed4-5 game1 team2">
+                <div class="teamContent" #elem10 (click)="advance(elem10)">
+                    <img src="src/img/bracket/nba/Utah_Jazz.svg">
+                    <form>
+                        <input type="text" class="left">
+                        <span>-</span>
+                        <input class="right">
+                    </form>
+                </div>
+            </li>
+            <li class="seed2-7 game2 team1">
+                <div class="teamContent" #elem11 (click)="advance(elem11)">
+                    <img src="src/img/bracket/nba/San_Antonio_Spurs.svg">
+                    <form>
+                        <input type="text" class="left">
+                        <span>-</span>
+                        <input class="right">
+                    </form>
+                </div>
+            </li>
+            <li class="seed3-6 game2 team2">
+                <div class="teamContent" #elem12 (click)="advance(elem12)">
+                    <img src="src/img/bracket/nba/Houston_Rockets.svg">
+                    <form>
+                        <input type="text" class="left">
+                        <span>-</span>
+                        <input class="right">
+                    </form>
+                </div>
+            </li>
+        </div>
+
+        <div class="west round3 2toGo">
+            <div class="seed1-8-4-5 game1 team1">
+                <div class="teamContent" #elem13 (click)="advance(elem13)">
+                    <img src="src/img/bracket/nba/Golden_State_Warriors.svg">
+                    <form>
+                        <input type="text" class="left">
+                        <span>-</span>
+                        <input class="right">
+                    </form>
+                </div>
+            </div>
+            <div class="seed2-7-3-6 game1 team2">
+                <div class="teamContent" #elem14 (click)="advance(elem14)">
+                    <img src="src/img/bracket/nba/San_Antonio_Spurs.svg">
+                    <form>
+                        <input type="text" class="left">
+                        <span>-</span>
+                        <input class="right">
+                    </form>
+                </div>
+            </div>
+        </div>
+        
+        <div class="west round4 1toGo">
+            <div class="seed1-8-4-5-2-7-3-6 game1 team1">
+                <div class="teamContent" #elem15 (click)="advance(elem15)">
+                    <img src="src/img/bracket/nba/Solid_white.svg">
+                    <form>
+                        <input type="text" class="left">
+                        <span>-</span>
+                        <input class="right">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="champion 0toGo">
+        Champion
+        <div class="seed1-8-4-5-2-7-3-6-1-8-4-5-2-7-3-6 champion">
+            <div #elem16 (click)="advance(elem16)">
+                <img src="src/img/bracket/nba/Solid_white.svg">
+                <form>
+                    <input type="text" class="left">
+                    <span>-</span>
+                    <input class="right">
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="eastGroup conference">
+        <div class="east round1 4toGo">
+            <div class="seed1 game1 team1">
+                <div class="teamContent" #elem17 (click)="advance(elem17)">
+                    <span class="rank">1</span>
+                    <img src="src/img/bracket/nba/Boston_Celtics.svg">
+                </div>
+            </div>
+            <div class="seed8 game1 team2">
+                <div class="teamContent" #elem18 (click)="advance(elem18)">
+                    <span class="rank">8</span>
+                    <img src="src/img/bracket/nba/Chicago_Bulls.svg">
+                </div>
+            </div> 
+            <div class="seed4 game2 team1">
+                <div class="teamContent" #elem19 (click)="advance(elem19)">
+                    <span class="rank">4</span>
+                    <img src="src/img/bracket/nba/Washington_Wizards.svg">
+                </div>
+            </div>
+            <div class="seed5 game2 team2">
+                <div class="teamContent" #elem20 (click)="advance(elem20)">
+                    <span class="rank">5</span>
+                    <img src="src/img/bracket/nba/Atlanta_Hawks.svg">
+                </div>
+            </div>
+            <div class="seed2 game3 team1">
+                <div class="teamContent" #elem21 (click)="advance(elem21)">
+                    <span class="rank">2</span>
+                    <img src="src/img/bracket/nba/Cleveland_Cavaliers.svg">
+                </div>
+            </div>
+            <div class="seed7 game3 team2">
+                <div class="teamContent" #elem22 (click)="advance(elem22)">
+                    <span class="rank">7</span>
+                    <img src="src/img/bracket/nba/Indiana_Pacers.svg">
+                </div>
+            </div>
+            <div class="seed3 game4 team1">
+                <div class="teamContent" #elem23 (click)="advance(elem23)">
+                    <span class="rank">3</span>
+                    <img src="src/img/bracket/nba/Toronto_Raptors.svg">
+                </div>
+            </div>
+            <div class="seed6 game4 team2">
+                <div class="teamContent" #elem24 (click)="advance(elem24)">
+                    <span class="rank">6</span>
+                    <img src="src/img/bracket/nba/Milwaukee_Bucks.svg">
+                </div>
+            </div>
+        </div>
+        <div class="east round2 3toGo">
+            <div class="seed1-8 game1 team1">
+                <div class="teamContent" #elem25 (click)="advance(elem25)">
+                    <img src="src/img/bracket/nba/Boston_Celtics.svg">
+                    <form>
+                        <input type="text" class="left">
+                        <span>-</span>
+                        <input class="right">
+                    </form>
+                </div>
+            </div>
+            <div class="seed4-5 game1 team2">
+                <div class="teamContent" #elem26 (click)="advance(elem26)">
+                    <img src="src/img/bracket/nba/Washington_Wizards.svg">
+                    <form>
+                        <input type="text" class="left">
+                        <span>-</span>
+                        <input class="right">
+                    </form>
+                </div>
+            </div>
+            <div class="seed2-7 game2 team1">
+                <div class="teamContent" #elem27 (click)="advance(elem27)">
+                    <img src="src/img/bracket/nba/Cleveland_Cavaliers.svg">
+                    <form>
+                        <input type="text" class="left">
+                        <span>-</span>
+                        <input class="right">
+                    </form>
+                </div>
+            </div>
+            <div class="seed3-6 game2 team2">
+                <div class="teamContent" #elem28 (click)="advance(elem28)">
+                    <img src="src/img/bracket/nba/Toronto_Raptors.svg">
+                    <form>
+                        <input type="text" class="left">
+                        <span>-</span>
+                        <input class="right">
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="east round3 2toGo">
+            <div class="seed1-8-4-5 game1 team1">
+                <div class="teamContent" #elem29 (click)="advance(elem29)">
+                    <img src="src/img/bracket/nba/Boston_Celtics.svg">
+                    <form>
+                        <input type="text" class="left">
+                        <span>-</span>
+                        <input class="right">
+                    </form>
+                </div>
+            </div>
+            <div class="seed2-7-3-6 game1 team2">
+                <div class="teamContent" #elem30 (click)="advance(elem30)">
+                    <img src="src/img/bracket/nba/Cleveland_Cavaliers.svg">
+                    <form>
+                        <input type="text" class="left">
+                        <span>-</span>
+                        <input class="right">
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="east round4 1toGo">
+            <div class="seed1-8-4-5-2-7-3-6 game1 team2">
+                <div class="teamContent" #elem31 (click)="advance(elem31)">
+                    <img src="src/img/bracket/nba/Solid_white.svg">
+                    <form>
+                        <input type="text" class="left">
+                        <span>-</span>
+                        <input class="right">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<button id="submitBracket" class="hide" (click)="submitBracket($event)"> Submit Bracket </button>
+<div id="bracketNotFullAlert">NOTE: Please Pick All Teams Before Submitting</div>

@@ -1,0 +1,225 @@
+* {
+    font-family: Helvetica, Arial, Courier;
+}
+
+h1 {
+    font-size: 40px;
+    color: orange;
+    text-align: center;
+}
+.bracket {
+    display: flex;
+    flex-wrap: wrap;
+    height: 600px;
+    width: 1060px;
+    border: black double;
+    margin: 0 auto 10px;
+    padding: 10px;
+}
+
+.conference {
+    width: 40%;
+    height: 100%;
+    display: flex;
+}
+
+.eastGroup {
+    justify-content: flex-end;
+}
+
+.round1, .round-1, .round2, .round3, .round4 {
+    display: flex;
+    flex-direction: column;
+    width: 25%;
+}
+
+.west, .east {
+    margin-right: 3px;
+}
+
+.east.round1 {
+    order: 4;
+}
+
+.east.round2 {
+    order: 3;
+}
+
+.east.round3 {
+    order: 2;
+}
+
+.east.round4 {
+    order: 1;
+}
+
+.round1 {
+    justify-content: center;
+}
+
+.round2 .team1, .round2 .team2  {
+    height: 15%;
+}
+
+.round2 .team2 {
+    padding-top: 60px;
+    margin-bottom: 60px;
+}
+
+
+.round3 .team1, .round3 .team2  {
+    height: 25%;
+}
+
+.round3 .team2 {
+    padding-top: 150px;
+    margin-bottom: 150px;
+}
+
+.round4 .team1, .round4 .team2 {
+    height: 50%;
+}
+
+
+.team1, .team2, .top, .bottom {
+    display: flex;
+    border-color: black;
+    width: 100%;
+    height: 10%;
+    border-bottom: solid orange;
+    border-width: 3px;
+}
+
+.team1, .top {
+    padding-right: 3px;
+}
+
+.west .team2 {
+    border-right: solid orange;
+    margin-bottom: 30px;
+}
+
+.east .team2 {
+    border-left: solid orange;
+    margin-bottom: 30px;
+}
+
+.round4 .team2 {
+    border-left-style: none;
+}
+
+.teamContent {
+    margin-top: auto;
+    margin-bottom: 1px;
+    width: 90%;
+    height: 55px;
+}
+.round1, .round-1 {
+    height: 100%;
+}
+
+.champion {
+    width: 20%;
+    display: flex;
+    flex-direction: column;
+    text-decoration: underline;
+    color: orange;
+}
+
+.champion img {
+    width: 212px;
+    height: 212px;
+    border-bottom: solid;
+}
+
+img {
+    box-sizing: border-box;
+    width: 55px;
+    height: 55px;
+    cursor: pointer;
+    background-color: white;
+}
+
+img:hover {
+    border: 1px solid dodgerblue;
+}
+
+form {
+    transform: translate(24px, 3px);
+    position: absolute;
+    width: 45px;
+    height: 40px;
+    z-index: 5;
+    color: orange;
+}
+
+input {
+    position: absolute;
+    padding: 0;
+    margin: 0;
+    resize: none;
+    overflow: none;
+    height: 22px;
+    width: 13px;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+form span {
+    text-align: center;
+    font-family: Courier;
+    font-size: 22px;
+    font-weight: bold;
+    position: absolute;
+    width: 25px;
+    left: 10px;
+}
+
+input.left {
+    left: 0;
+}
+
+input.right {
+    right: 0;
+}
+
+.champion form {
+    width: 80px;
+    transform: translate(70px, 0px);
+}
+
+.champion input {
+    font-size: 35px;
+    height: 35px;
+    width: 22px;
+}
+
+.champion form span {
+    font-size: 30px;
+    left: 27px
+}
+
+.rank {
+  position: absolute;
+  opacity: .8;
+  background: orange;
+  border-radius: 10px;
+}
+
+#submitBracket {
+    font-size: 40px;
+    font-weight: bold;
+    padding: 5px;
+    border-radius: 5px;
+    opacity: 1;
+    background: #7cee4c;
+}
+
+.hide {
+    display: none;
+}
+
+#bracketNotFullAlert {
+    background-color: #ff5555;
+    font-size: 16px;
+}

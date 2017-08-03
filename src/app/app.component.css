@@ -7,7 +7,14 @@
 }
 #pageWrapper {
     text-align: center;
-    border-style: solid;
+    /*border-style: solid;*/
     border-width: 4px;
     border-radius: 4px;
+}
+.topMenuOption {
+	background: #444444;
+	border-radius: 5px;
+	padding: 1px 15px;
+	color: white;
+	text-decoration: none;
 }
