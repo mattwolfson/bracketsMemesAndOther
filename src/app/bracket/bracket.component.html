@@ -1,13 +1,21 @@
 <header>
     <h1>NBA 2017 Post Season Bracket</h1>
 </header>
+
+<div class="round-1">
+    <div class="teamContent {{team.className}} {{i%2 == 0 ? 'top' : 'bottom'}}"
+         *ngFor="let team of teams; let i = index">
+        <span class="rank">{{ team.rank }}</span>
+        <img src="{{ team.logo }}">
+    </div>
+</div>
 <div class="bracket">
     <div class="westGroup conference">
         <div class="west round1 4toGo">
-            <div class="seed1 game1 team1">
-                <div class="teamContent"> <!-- #elem (click)="advance(elem)"> -->
+            <div class='seed1 game1 team1'>
+                <div class="teamContent" #elem (click)="advance(elem)">
                     <span class="rank">1</span>
-                    <img src="src/img/bracket/nba/Golden_State_Warriors.svg">
+                    <img src='src/img/bracket/nba/Golden_State_Warriors.svg'>
                 </div>
             </div>
              <div class="seed8 game1 team2">

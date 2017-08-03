@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Team } from './team.model';
 
 @Component({
   selector: 'app-bracket',
@@ -263,4 +264,14 @@ export class BracketComponent implements OnInit {
   	}
   }
 
+  teams: Team[] = [
+    new Team(1,'src/img/bracket/nba/Golden_State_Warriors.svg','seed-1 game-1 round-1','Golden State Warriors'),
+    new Team(8,'src/img/bracket/nba/Portland_Trail_Blazers.svg','seed-8 game-1 round-1','Portland Trail Blazers'),
+    new Team(4,'src/img/bracket/nba/Clippers.svg','seed-4 game-1 round-1','Clippers'),
+    new Team(5,'src/img/bracket/nba/Utah_Jazz.svg','seed-5 game-1 round-1','Utah Jazz'),
+    new Team(2,'src/img/bracket/nba/San_Antonio_Spurs.svg','seed-2 game-1 round-1','San Antonio Spurs'),
+    new Team(7,'src/img/bracket/nba/Memphis_Grizzlies.svg','seed-7 game-1 round-1','Memphis Grizzlies'),
+    new Team(3,'src/img/bracket/nba/Houston_Rockets.svg','seed-8 game-1 round-1','Houston Rockets'),
+    new Team(6,'src/img/bracket/nba/Oklahoma_City_Thunder.gif','seed-8 game-1 round-1','Oklahoma City Thunder')
+  ];
 }
