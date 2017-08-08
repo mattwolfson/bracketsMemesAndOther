@@ -1,9 +1,15 @@
 <base href="/">
 <h1 id="pageWrapper" (window:resize)="onResize($event)">
-<nav>
-  <a class="topMenuOption" routerLink="/brackets" routerLinkActive="active">BRACKETS</a>
-  <a class="topMenuOption" routerLink="/meme" routerLinkActive="active">MEMES</a>
-</nav>
+<div class="centered">
+	<header class="row">	
+		<nav class="col-md-8 col-md-offset-2">	
+			<ul class="nav nav-pills">	
+				<li routerLinkActive="active"><a [routerLink]="['/brackets']">Brackets</a></li>
+				<li routerLinkActive="active"><a  [routerLink]="['/meme']">Memes</a></li>	
+			</ul>
+		</nav>
+	</header>
+</div>
 <router-outlet (window:resize)="onResize($event)"></router-outlet>
 </h1>
 <div class="footer">MattWolfson.com &bull; <a href="https://www.linkedin.com/in/wolfsonmatt" target="_blank">LinkedIn</a> &bull; mcw88@cornell.edu &bull; 2014 - 2017 </div>	

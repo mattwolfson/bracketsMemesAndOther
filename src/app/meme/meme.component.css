@@ -11,12 +11,15 @@
 .inputSection {
     display: flex;
     justify-content: center;
-}
-.inputSection label {
+    margin: 5px 0;
     font-size: 24px;
 }
+.inputSection label {
+    margin-right: 5px;
+}
 .inputMemeInfo {
-    margin: auto 0;
+    flex-grow: 2;
+    max-width: 500px;
 }
 #pageWrapper {
     text-align: center;
