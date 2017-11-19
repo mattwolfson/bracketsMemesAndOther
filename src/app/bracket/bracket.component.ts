@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Team } from './team.model';
+import { Conference } from './conference.model';
 
 @Component({
   selector: 'app-bracket',
@@ -7,208 +8,107 @@ import { Team } from './team.model';
   styleUrls: ['./bracket.component.css']
 })
 export class BracketComponent implements OnInit {
- 	
+
+	eastTeams: Team[] = [
+		new Team(1, 'src/img/bracket/nba/Boston_Celtics.svg', 'nbaEast', 'seed-1 game-1 round-1', 'Boston Celtics'),
+		new Team(8, 'src/img/bracket/nba/Chicago_Bulls.svg', 'nbaEast', 'seed-8 game-1 round-1', 'Chicago Bulls'),
+		new Team(4, 'src/img/bracket/nba/Washington_Wizards.svg', 'nbaEast', 'seed-4 game-1 round-1', 'Washington Wizards'),
+		new Team(5, 'src/img/bracket/nba/Atlanta_Hawks.svg', 'nbaEast', 'seed-5 game-1 round-1', 'Atlanta Hawks'),
+		new Team(2, 'src/img/bracket/nba/Cleveland_Cavaliers.svg', 'nbaEast', 'seed-2 game-1 round-1', 'Cleveland Calaliers'),
+		new Team(7, 'src/img/bracket/nba/Indiana_Pacers.svg', 'nbaEast', 'seed-7 game-1 round-1', 'Indiana Pacers'),
+		new Team(3, 'src/img/bracket/nba/Houston_Rockets.svg', 'nbaEast', 'seed-8 game-1 round-1', 'Houston Rockets'),
+		new Team(6, 'src/img/bracket/nba/Oklahoma_City_Thunder.gif', 'nbaEast', 'seed-8 game-1 round-1', 'Oklahoma City Thunder')
+	];
+
+	westTeams: Team[] = [
+		new Team(1, 'src/img/bracket/nba/Golden_State_Warriors.svg', 'nbaWest', 'seed-1 game-1 round-1', 'Golden State Warriors'),
+		new Team(8, 'src/img/bracket/nba/Portland_Trail_Blazers.svg', 'nbaWest', 'seed-8 game-1 round-1', 'Portland Trail Blazers'),
+		new Team(4, 'src/img/bracket/nba/Clippers.svg', 'nbaWest', 'seed-4 game-1 round-1', 'Clippers'),
+		new Team(5, 'src/img/bracket/nba/Utah_Jazz.svg', 'nbaWest', 'seed-5 game-1 round-1', 'Utah Jazz'),
+		new Team(2, 'src/img/bracket/nba/San_Antonio_Spurs.svg', 'nbaWest', 'seed-2 game-1 round-1', 'San Antonio Spurs'),
+		new Team(7, 'src/img/bracket/nba/Memphis_Grizzlies.svg', 'nbaWest', 'seed-7 game-1 round-1', 'Memphis Grizzlies'),
+		new Team(3, 'src/img/bracket/nba/Houston_Rockets.svg', 'nbaWest', 'seed-8 game-1 round-1', 'Houston Rockets'),
+		new Team(6, 'src/img/bracket/nba/Oklahoma_City_Thunder.gif', 'nbaWest', 'seed-8 game-1 round-1', 'Oklahoma City Thunder')
+	];
+
+	nbaEast = new Conference('east', 'eastGroup', this.eastTeams, 'basketball', 'NBA');
+	nbaWest = new Conference('west', 'westGroup', this.westTeams, 'basketball', 'NBA');
+	conferences: Conference[] = [ this.nbaEast, this.nbaWest];
+
+	blankSpotImg = 'src/img/bracket/nba/Solid_white.svg';
+	blank = new Team(null, this.blankSpotImg, 'nbaEast');
+	totalRounds;
 
   constructor() { }
 
-  public advance(pick) {
-  // 	 var replaceAt = function(index, replacement) {
-	 //    return this.substr(0, index) + replacement+ this.substr(index + replacement.length);
-		// }
-		var noTeamChosenSrc = 'src/img/bracket/nba/Solid_white.svg';
-  	var numberOfRounds = 4;
-  	var teamClasses = pick.parentNode.className;
-  	var roundElement = pick.parentNode.parentNode;
-  	var roundClasses = pick.parentNode.parentNode.className;
-  	var roundNumber = roundClasses.substring(roundClasses.indexOf('toGo')-1).charAt(0);
-  	var gameNumber = Number(teamClasses.substring(teamClasses.indexOf('game')).charAt(4));
-  	var teamNumber = Number(teamClasses.substring(teamClasses.indexOf('team')).charAt(4));
-  	var competingTeamNumber = teamNumber % 2 + 1;
-  	var competingTeamClass = 'game' + gameNumber + ' team' + competingTeamNumber;
-  	var competingTeam;
-  	var competingTeamSrc;
+	public advanceToNextRound(conferenceName, roundNumber, teamPosition, currentPositionId) {
+		const winningTeamPicture = this.getPictureFromTeamElementId(currentPositionId).getAttribute('src');
+		const newId = this.findFutureGameId(currentPositionId);
+		const winningPictureBox = this.getPictureFromTeamElementId(newId);
+		winningPictureBox.setAttribute('src', winningTeamPicture);
 
-	  var roundToCheckCompetingTeamIsNotIn = roundNumber - 2;
-	  if (roundToCheckCompetingTeamIsNotIn >=0) {
-	  	for (var i = 0; i < roundElement.childNodes.length; i++) {
-	  		if (roundElement.childNodes[i].className &&
-	  			roundElement.childNodes[i].className.includes(competingTeamClass)) {
-	  			competingTeam = roundElement.childNodes[i];
-	  			break;
-	  		}
-	  	}
-
-	  	//Find picture from competing team
-	  	for (var i = 0; i < competingTeam.childNodes.length; i++) {
-	  		if (competingTeam.childNodes[i].tagName == 'DIV') {
-	  			var teamLogoHolder = competingTeam.childNodes[i];
-		  		for (var i = 0; i < teamLogoHolder.childNodes.length; i++) {
-		  			if (teamLogoHolder.childNodes[i].tagName == 'IMG'){
-		  				competingTeamSrc = teamLogoHolder.childNodes[i].src;
-		  				break;
-		  			}
-		  		}
-	  		}
-	  	}
-
-	  	//Check if the competing team is in any future rounds
-	  	var newRoundClasses;
-	  	var newRoundElement;
-	  	var roundIndex;
-	  	var roundClassIndex;
-	  	var newGameNumber;
-	  	var newTeamNumber;
-	  	var futureGameNumber;
-	  	var futureTeamNumber;
-	  	var newClass;
-	  	var futureTeam;
-	  	var needToCheckNextRound = true;
-		  var roundToCheckCompetingTeamIsNotIn = roundNumber - 2;
-		  newGameNumber = Math.round(gameNumber/2);
-		  Math.round(gameNumber/2) !== gameNumber/2 ? newTeamNumber = 1 : newTeamNumber = 2;
-
-	  	while (needToCheckNextRound && roundToCheckCompetingTeamIsNotIn >=0) {
-		  	needToCheckNextRound = false;
-		  	if (roundToCheckCompetingTeamIsNotIn > 0) {
-		  		roundIndex = roundClasses.indexOf(('toGo'))-1;
-		  		newRoundClasses = roundClasses.substring(0,roundIndex) + 
-		  			roundToCheckCompetingTeamIsNotIn +
-		  			roundClasses.substring(roundIndex + 1);
-		  		roundClassIndex = newRoundClasses.indexOf('round');
-		  		newRoundClasses = newRoundClasses.substring(0,roundClassIndex) +
-		  			newRoundClasses.substring(roundClassIndex + 7);
-		  		futureGameNumber = Math.round(newGameNumber/2);
-		  		Math.round(newGameNumber/2) !== newGameNumber/2 ? futureTeamNumber = 1 : futureTeamNumber = 2;
-		  		if (newRoundClasses.indexOf('east') >= 0 && roundToCheckCompetingTeamIsNotIn === 1) { 
-		  			futureTeamNumber = 2;
-		  		}
-		  		newGameNumber = futureGameNumber;
-		  		newTeamNumber = futureTeamNumber;
-		  		newClass = "game" + futureGameNumber + " team" + futureTeamNumber;
-		  	} else {
-		  		newRoundClasses = '0toGo';
-		  		newClass = "champion";
-		  	}
-
-	  		newRoundElement = document.getElementsByClassName(newRoundClasses)[0];
-	  		futureTeam = null;
-	  		for (var i = 0; i < newRoundElement.childNodes.length; i++) {
-		  		if (newRoundElement.childNodes[i]['className'] &&
-		  			newRoundElement.childNodes[i]['className'].includes(newClass)) {
-		  			futureTeam = newRoundElement.childNodes[i];
-		  			break;
-		  		}
-		  	}
-
-		  	if(!futureTeam) { console.log('no future team found'); }
-
-		  	//Find picture from competing team
-		  	for (var i = 0; i < futureTeam.childNodes.length; i++) {
-		  		if (futureTeam.childNodes[i].tagName == 'DIV') {
-		  			var teamLogoHolder = futureTeam.childNodes[i];
-			  		for (var i = 0; i < teamLogoHolder.childNodes.length; i++) {
-			  			if (teamLogoHolder.childNodes[i].tagName == 'IMG'){
-			  				if (teamLogoHolder.childNodes[i].src === competingTeamSrc) {
-			  					teamLogoHolder.childNodes[i].src = noTeamChosenSrc;
-			  					roundToCheckCompetingTeamIsNotIn--;
-			  					needToCheckNextRound = true;
-			  				}
-			  				break;
-			  			}
-			  		}
-		  		}
-		  	}
-		  }
+		if (newId !== 'champion') {
+			const competingTeamPosition = teamPosition % 2 === 0 ? ++teamPosition : --teamPosition;
+			const competingTeamId = conferenceName + '-round-' + roundNumber + '-team-' + competingTeamPosition;
+			this.clearLoserFromFutureGames(newId, competingTeamId);
 		}
-		this.checkToUpdateSubmitButon();
-  };
+	}
 
-  private removeLosingTeamFromFutureRounds = function() {
-  	console.log('hi');
-  };
+	private findFutureGameId(currentPositionId) {
+		const idValues = currentPositionId.split('-');
+		const conferenceName = idValues[0];
+		const roundNumber = Number(idValues[2]);
+		const teamPosition = Number(idValues[4]);
+		let newId;
+		if (this.totalRounds === roundNumber) {
+			newId = 'champion';
+		} else {
+			const newRound = roundNumber + 1;
+			const newTeamPosition = Math.floor(teamPosition / 2);
+			newId = conferenceName + '-round-' + newRound + '-team-' + newTeamPosition;
+		}
+		return newId;
+	}
+
+	private clearLoserFromFutureGames(futureWinnerId, losingTeamId) {
+		const losingTeamPicture = this.getPictureFromTeamElementId(losingTeamId).getAttribute('src');
+		if (losingTeamPicture !== this.blankSpotImg) {
+			while (futureWinnerId !== 'champion') {
+				futureWinnerId = this.findFutureGameId(futureWinnerId);
+				let futureWinnerPictureElement = this.getPictureFromTeamElementId(futureWinnerId);
+				let futureWinnerPicture = futureWinnerPictureElement.getAttribute('src');
+				if (futureWinnerPicture === losingTeamPicture) {
+					futureWinnerPictureElement.setAttribute('src', this.blankSpotImg);
+				} else {
+					break;
+				}
+			}
+		}
+	}
+
+	private getPictureFromTeamElementId(id) {
+		const team = document.getElementById(id);
+		for(let index in team.children) {
+			if (team.children[index].className === 'teamPicture') {
+				return team.children[index];
+			}
+		};
+	}
 
 
   ngOnInit() {
-  	var i,
-        j,
-        newMatchups,
-        curRound = 1,
-        NUM_ROUNDS = 4,
-        sides = ['east', 'west'],
-        matchups = [["1", "8"], ["4", "5"], ["2", "7"], ["3", "6"], ["1", "8"], ["4", "5"], ["2", "7"], ["3", "6"]],
-        roundX,
-        team1,
-        team2,
-        winSlot,
-        allInputs = document.getElementsByTagName("input"),
-        setTeamOnClick,
-        verifyInput;
-    
-    // Takes an li and sets the child img onclick
-    setTeamOnClick = function (curSlot, nextSlot) {
-        var img = curSlot.getElementsByTagName("img")[0],
-            nextImg = nextSlot.getElementsByTagName("img")[0];
-        console.log(nextImg);
-        img.onclick = function (event) {
-            nextImg.src = img.src;
-        };
-    };
-    
-    // Validates input in series scoring
-    verifyInput = function (e) {
+  	const  verifyInput = function (e) {
         e = e || window.event;
-        var keyChar = String.fromCharCode(e.keyCode),
+        const keyChar = String.fromCharCode(e.keyCode),
             input = e.target || e.srcElement;
-        
+
         if (keyChar < '0' || keyChar > '4') {
             return false;
         } else {
-            input.value = "";
+            input.value = '';
         }
     };
-    
-    // Set up onClicks for all images
-    while (curRound <= NUM_ROUNDS) {
-        // Go through east and west
-        for (i = 0; i < sides.length; i += 1) {
-            roundX = document.getElementsByClassName(sides[i] + " round" + curRound)[0];
-            console.log(roundX);
-            // Go through each matchup
-            for (j = 0; j < matchups.length / 2; j += 1) {
-                team1 = roundX.getElementsByClassName("seed" + matchups[j][0])[0];
-                team2 = roundX.getElementsByClassName("seed" + matchups[j][1])[0];
-
-                if (curRound < 4) {
-                    winSlot = document.getElementsByClassName(sides[i] + " round" + (curRound + 1))[0];
-                } else {
-                    winSlot = document.getElementsByClassName("champion")[0];
-                }
-
-                setTeamOnClick(team1, winSlot.getElementsByClassName("seed" + matchups[j][0] + "-" + matchups[j][1])[0]);
-                setTeamOnClick(team2, winSlot.getElementsByClassName("seed" + matchups[j][0] + "-" + matchups[j][1])[0]);
-            }
-        }
-
-        // Merge
-        if (curRound < 4) {
-            newMatchups = [];
-            for (i = 0; i < matchups.length; i += 2) {
-                matchups[i][0] = matchups[i][0] + "-" + matchups[i][1];
-                matchups[i][1] = matchups[i + 1][0] + "-" + matchups[i + 1][1];
-                newMatchups.push(matchups[i]);
-            }
-            matchups = newMatchups;
-        }
-        
-        curRound += 1;
-    }
-    
-    // Setup text listeners for all inputs
-    for (i = 0; i < allInputs.length; i += 1) {
-        allInputs[i].onkeypress = verifyInput;
-    }
-
-  }
+	}
 
   public checkForUnpickedTeams(enableAlerts) {
   	var images = document.getElementsByTagName('img');
@@ -264,14 +164,27 @@ export class BracketComponent implements OnInit {
   	}
   }
 
-  teams: Team[] = [
-    new Team(1,'src/img/bracket/nba/Golden_State_Warriors.svg','seed-1 game-1 round-1','Golden State Warriors'),
-    new Team(8,'src/img/bracket/nba/Portland_Trail_Blazers.svg','seed-8 game-1 round-1','Portland Trail Blazers'),
-    new Team(4,'src/img/bracket/nba/Clippers.svg','seed-4 game-1 round-1','Clippers'),
-    new Team(5,'src/img/bracket/nba/Utah_Jazz.svg','seed-5 game-1 round-1','Utah Jazz'),
-    new Team(2,'src/img/bracket/nba/San_Antonio_Spurs.svg','seed-2 game-1 round-1','San Antonio Spurs'),
-    new Team(7,'src/img/bracket/nba/Memphis_Grizzlies.svg','seed-7 game-1 round-1','Memphis Grizzlies'),
-    new Team(3,'src/img/bracket/nba/Houston_Rockets.svg','seed-8 game-1 round-1','Houston Rockets'),
-    new Team(6,'src/img/bracket/nba/Oklahoma_City_Thunder.gif','seed-8 game-1 round-1','Oklahoma City Thunder')
-  ];
+	public timesToLoop(conferenceTeams, roundNumber) {
+		if (roundNumber !== 1) {
+			const numberOfTeams = conferenceTeams.length;
+			const roundedNumber = Math.ceil(numberOfTeams / (Math.pow(2, roundNumber - 1)));
+			 return Array(roundedNumber).fill(0).map((x, i) => i);
+		} else {
+			return conferenceTeams;
+		}
+  }
+
+	public numberOfRounds(numberOfTeams) {
+		const roundEstimate = Math.log(numberOfTeams) / Math.log(2);
+		let rounds;
+		if (roundEstimate % 1 === 0) {
+			rounds = Array(roundEstimate + 1).fill(0).map((x, i) => i + 1);
+		} else {
+			//TODO: handle case of byes
+			console.log('There needs to be byes');
+			rounds = Array(Math.ceil(roundEstimate) + 1).fill(0).map((x, i) => i + 1);
+		}
+		this.totalRounds = rounds.length;
+		return rounds;
+	}
 }

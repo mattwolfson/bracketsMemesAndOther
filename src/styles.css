@@ -27,3 +27,13 @@ img[alt="www.000webhost.com"]{
 	font-size: 72px;
 	color: #30a7f7;
 }
+.funFont{
+    font-family: 'Amatic SC', cursive;
+    font-weight: 700;
+    line-height: 46px;
+    font-size: 46px;
+    margin: 0 0 23px 0;
+}
+.site-logo {
+  content: "/img/icons/favicon-16x16.png";
+}

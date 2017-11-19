@@ -10,11 +10,12 @@ h1 {
 .bracket {
     display: flex;
     flex-wrap: wrap;
-    height: 600px;
+    height: 620px;
     width: 1060px;
     border: black double;
     margin: 0 auto 10px;
-    padding: 10px;
+    padding: 7.6px;
+    justify-content: space-between;
 }
 
 .conference {
@@ -23,14 +24,27 @@ h1 {
     display: flex;
 }
 
-.eastGroup {
-    justify-content: flex-end;
+.westGroup {
+    order: 1;
 }
 
-.round1, .round-1, .round2, .round3, .round4 {
+.eastGroup {
+    flex-direction: row-reverse;
+    order: 3;
+}
+
+.round1, .round-1, .round2, .round3, .round4, .round {
     display: flex;
     flex-direction: column;
     width: 25%;
+}
+
+.westGroup .bottom {
+    border-right: solid orange;
+}
+
+.eastGroup .bottom {
+    border-left: solid orange;
 }
 
 .west, .east {
@@ -53,7 +67,7 @@ h1 {
     order: 1;
 }
 
-.round1 {
+.round1, .round-1 {
     justify-content: center;
 }
 
@@ -81,16 +95,15 @@ h1 {
 }
 
 
-.team1, .team2, .top, .bottom {
+.team1, .team2 {
     display: flex;
-    border-color: black;
-    width: 100%;
-    height: 10%;
+    /* width: 100%; */
+    /* height: 10%; */
     border-bottom: solid orange;
     border-width: 3px;
 }
 
-.team1, .top {
+.team1 {
     padding-right: 3px;
 }
 
@@ -109,13 +122,37 @@ h1 {
 }
 
 .teamContent {
-    margin-top: auto;
-    margin-bottom: 1px;
-    width: 90%;
-    height: 55px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    flex-grow: 6;
+    width: 100%;
+    border-bottom: solid orange;
+    border-width: 3px;
 }
-.round1, .round-1 {
+
+.firstTeamInRound {
+    flex-grow: 1;
+}
+
+.westGroup .round-1 .teamContent {
+    align-items: normal;
+}
+
+.round1 {
     height: 100%;
+}
+
+.round-2 {
+    padding: 37.5px 0px;
+}
+
+.round-3 {
+    padding: 112.5px 0px;
+}
+
+.round-4 {
+    padding: 262.5px 0px;
 }
 
 .champion {
@@ -124,6 +161,30 @@ h1 {
     flex-direction: column;
     text-decoration: underline;
     color: orange;
+    order: 2;
+}
+
+#champion {
+    width: 18%;
+    display: flex;
+    flex-direction: column;
+    text-decoration: underline;
+    color: orange;
+    order: 2;
+    justify-content: center;
+    align-items: center;
+}
+
+#champion img {
+    width: 100%;
+    height: 150px;
+    border-bottom: solid;
+    border-width: 3px;
+    margin-bottom: 60%;
+}
+
+#champion form {
+    /* transform: translate(0px, 0px); */
 }
 
 .champion img {
@@ -137,7 +198,7 @@ img {
     width: 55px;
     height: 55px;
     cursor: pointer;
-    background-color: white;
+    /* background-color: white; */
 }
 
 img:hover {
@@ -145,7 +206,7 @@ img:hover {
 }
 
 form {
-    transform: translate(24px, 3px);
+    transform: translate(0px, 50px);
     position: absolute;
     width: 45px;
     height: 40px;
@@ -163,6 +224,9 @@ input {
     width: 13px;
     font-size: 22px;
     font-weight: bold;
+    border-style: solid;
+    border-width: .5px;
+    border-color: grey;
 }
 
 form span {
